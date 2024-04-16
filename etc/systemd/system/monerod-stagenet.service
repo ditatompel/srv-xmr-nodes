@@ -1,0 +1,18 @@
+[Unit]
+Description=Monero Stagenet Daemon
+After=network.target
+
+[Service]
+User=monero
+Type=forking
+GuessMainPID=no
+ExecStart=/opt/monero/.local/bin/monerod \
+    --detach \
+    --stagenet \
+    --config-file=/etc/monero/stagenet.conf
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+
+# vim: filetype=systemd ts=4 sw=4 et
