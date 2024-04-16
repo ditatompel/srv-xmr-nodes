@@ -27,6 +27,7 @@ print_help()
 COMMIT_MESSAGE="sync: $(date +'%Y-%m-%d %H:%M:%S')"
 
 sync() {
+  mkdir "${SCRIPT_DIR}/versions" -p
   mkdir "${SCRIPT_DIR}/etc/systemd/system" -p
   mkdir "${SCRIPT_DIR}/etc/monero" -p
   mkdir "${SCRIPT_DIR}/etc/nginx/conf.d" -p
@@ -36,6 +37,7 @@ sync() {
     "${SCRIPT_DIR}/etc/systemd/system" --update
   rsync /etc/monero/ \
     "${SCRIPT_DIR}/etc/monero/" -av --delete
+  /opt/monero/.local/bin/monerod --version > "${SCRIPT_DIR}/versions/monerod"
 
   echo "Syncing nginx configs..."
   cp /etc/nginx/conf.d/*.xmr.ditatompel.com.conf \
