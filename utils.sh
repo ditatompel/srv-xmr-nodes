@@ -29,12 +29,17 @@ COMMIT_MESSAGE="sync: $(date +'%Y-%m-%d %H:%M:%S')"
 sync() {
   mkdir "${SCRIPT_DIR}/etc/systemd/system" -p
   mkdir "${SCRIPT_DIR}/etc/monero" -p
+  mkdir "${SCRIPT_DIR}/etc/nginx/conf.d" -p
 
   echo "Syncing monerod configs..."
   cp /etc/systemd/system/monerod-*.service \
     "${SCRIPT_DIR}/etc/systemd/system" --update
   rsync /etc/monero/ \
     "${SCRIPT_DIR}/etc/monero/" -av --delete
+
+  echo "Syncing nginx configs..."
+  cp /etc/nginx/conf.d/*.xmr.ditatompel.com.conf \
+    "${SCRIPT_DIR}/etc/nginx/conf.d" --update
 }
 
 # `:` means "takes an argument", not "mandatory argument".
