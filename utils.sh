@@ -42,6 +42,9 @@ sync() {
   echo "Syncing nginx configs..."
   cp /etc/nginx/conf.d/*.xmr.ditatompel.com.conf \
     "${SCRIPT_DIR}/etc/nginx/conf.d" --update
+
+  # Crontab
+  crontab -l > "${SCRIPT_DIR}/crontab"
 }
 
 # `:` means "takes an argument", not "mandatory argument".
