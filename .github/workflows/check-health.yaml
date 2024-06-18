@@ -19,7 +19,7 @@ jobs:
     name: Check Stagenet RPC
     runs-on: ubuntu-latest
     if: github.repository_owner == 'ditatompel'
-    environment: testnet
+    environment: stagenet
     steps:
     - name: Check Testnet RPC SSL
       run: |
