@@ -1,0 +1,19 @@
+name: Check Services
+on:
+  push:
+  schedule:
+    - cron:  '29 4,21 * * *'
+
+jobs:
+
+  testnet:
+    name: Check Testnet RPC
+    runs-on: ubuntu-latest
+    if: github.repository_owner == 'ditatompel'
+    environment: testnet
+    steps:
+    - name: Check Testnet RPC SSL
+      run: |
+        curl -s https://testnet.xmr.ditatompel.com/json_rpc -d '{"jsonrpc":"2.0","id":"0","method":"get_info"}' -H 'Content-Type: application/json'
+
+# vim: set ts=2 sw=2 et:
