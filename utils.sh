@@ -40,7 +40,7 @@ sync() {
   /opt/monero/.local/bin/monerod --version > "${SCRIPT_DIR}/versions/monerod"
 
   echo "Syncing nginx configs..."
-  cp /etc/nginx/conf.d/*.xmr.ditatompel.com.conf \
+  cp /usr/lib/nginx/sites/*.xmr.ditatompel.com.conf \
     "${SCRIPT_DIR}/etc/nginx/conf.d" --update
 
   # Crontab
